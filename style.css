@@ -3,26 +3,27 @@
   font-weight: 600;
 }
 
-#main {
+main {
   display: grid;
   grid-template-areas:
     'header header header'
     'selector selector selector'
     'details details team'
     'evolutions evolutions evolutions'
-    'recent recent recent';
+    'recent recent recent'
+    'footer footer footer';
   grid-gap: 5px;
   max-width: 800px;
   width: 75%;
   margin: 0 auto;
 }
 
-#main > * {
+main > * {
   border: 1px solid black;
   padding: 10px 20px;
 }
 
-#header {
+header {
   grid-area: header;
   text-align: center;
 }
@@ -115,4 +116,19 @@ ul#team-list img {
 
 #recent {
   grid-area: recent;
+}
+
+footer {
+  grid-area: footer;
+  text-align: center;
+  display: flex;
+}
+
+footer > * {
+  flex-grow: 2;
+}
+
+footer h3 > i {
+  font-size: 200px;
+  color: green;
 }
