@@ -63,6 +63,45 @@ header {
 
 #details-sub-text {
   grid-area: details-sub-text;
+  display: grid;
+  grid-template-rows: repeat(4, 0.5fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#details-sub-text #base-attributes {
+  grid-row: 1;
+  grid-column: span 2;
+  text-align: center;
+}
+
+#details-sub-text #hp-stat {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+#details-sub-text #speed-stat {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+#details-sub-text #attack-stat {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+#details-sub-text #special-attack-stat {
+  grid-row: 3;
+  grid-column: 2;
+}
+
+#details-sub-text #defense-stat {
+  grid-row: 4;
+  grid-column: 1;
+}
+
+#details-sub-text #special-defense-stat {
+  grid-row: 4;
+  grid-column: 2;
 }
 
 #details-action {
