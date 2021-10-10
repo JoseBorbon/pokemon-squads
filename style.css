@@ -46,7 +46,6 @@ header {
     'details-sub-text details-sub-text'
     '. details-action';
   grid-gap: 5px;
-  height: 518px;
 }
 
 #details-title {
@@ -123,14 +122,11 @@ header {
 #team {
   grid-area: team;
   height: 518px;
-  padding-left: 38px;
-  padding-right: 0px;
 }
 
 ul#team-list {
   list-style-type: none;
   padding: 0;
-  width: 186.4px;
   height: 328px;
 }
 ul#team-list li {
