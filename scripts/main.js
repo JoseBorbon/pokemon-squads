@@ -1,19 +1,34 @@
 // const url = 'https://pokeapi.co/api/v2/pokemon?limit=30'; <--commented this since there was an unintentional behavior caused when referencing url inside of asynchronous function
 
-//created IIFE to add all fetched pokemon from fetch
-(async function addPokemonToDropDown() {
-  const dropdown = document.querySelector('#pokemon-select');
-  let response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=30');
-  const { results, url } = await response.json();
-
-  //iterate through response and append options with values
-  results.forEach((el) => {
-    createDropDownOptions(dropdown, el);
-  });
-})();
-
 //create an event listener that will get the current selected value in dropdown and then make it fetch picture for us
 const goButton = document.querySelector('#pokemon-selector input[value="Go"]');
+const addButton = document.querySelector('button');
+
+addButton.addEventListener('click', () => {
+  const teamList = document.querySelector('#team-list');
+  const detailsPokemonName = document
+    .querySelector('#details-name')
+    .textContent.match(/Name:(.*)/)[1]
+    .trim();
+  const detailsImgContainerImg = document.querySelector(
+    '#details-img-container img'
+  );
+  //Used to prevent additional mons from being added to team if size is 6 already
+  if (childrenLengthIsEqualTo6(teamList.children.length)) {
+    return;
+  }
+
+  teamList.append(
+    createElement(
+      'li',
+      '',
+      'span',
+      detailsImgContainerImg.src,
+      'Pokémon Team Thumbnail',
+      detailsPokemonName
+    )
+  );
+});
 
 goButton.addEventListener('click', (event) => {
   event.preventDefault();
@@ -21,11 +36,12 @@ goButton.addEventListener('click', (event) => {
   const selectedVal = document.querySelector('#pokemon-select').value;
 
   (async function fetchMon(selectedValue) {
+    const recentList = document.querySelector('#recent-list');
     let response = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${selectedValue}`
     );
     response = await response.json();
-    console.log(response);
+    // console.log(response);
     //destructuring response -- Will create function for this later//
     const {
       name,
@@ -58,8 +74,8 @@ goButton.addEventListener('click', (event) => {
       monDefense,
       monSpDefense,
     ];
-    //used so that first letter in name is capitalized
 
+    //used so that first letter in name is capitalized
     let properName = name[0].toUpperCase() + name.slice(1);
     //used to remove nidoran-fs annoying f which caused a bug
     //may need to instead clear each elements text content so that it removes after the colin with replace method
@@ -107,9 +123,27 @@ goButton.addEventListener('click', (event) => {
         el.textContent = rep;
       }
     });
+    //Potentially will be changing this to a closure
+    if (childrenLengthIsEqualTo6(recentList.children.length)) {
+      removeLastChildEl(recentList);
+    }
+    document
+      .querySelector('#recent-list')
+      .prepend(
+        createElement(
+          'div',
+          'recent-list-item',
+          'p',
+          newFetchedImg,
+          `recent image of ${properName}`,
+          properName
+        )
+      );
 
-    console.log(monDetails);
-    console.log(types); //will need to iterate through types
+    // console.log(monDetails);
+    // console.log(types); //will need to iterate through types
   })(selectedVal);
 });
 // figure out what we're going to fetch and read documentation to figure out more about the restful API
+
+addPokemonToDropDown();
