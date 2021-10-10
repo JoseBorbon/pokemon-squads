@@ -52,6 +52,10 @@ header {
   grid-area: details-title;
 }
 
+#details-header {
+  text-align: center;
+}
+
 #details-img-container img {
   grid-area: details-img;
   width: 100px;
@@ -170,4 +174,8 @@ footer > * {
 footer h3 > i {
   font-size: 200px;
   color: green;
+}
+
+p {
+  margin: 0;
 }
