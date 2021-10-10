@@ -25,7 +25,8 @@ addButton.addEventListener('click', () => {
       'span',
       detailsImgContainerImg.src,
       'Pokémon Team Thumbnail',
-      detailsPokemonName
+      detailsPokemonName,
+      true //true for wantsEventListener, otherwise default will be false
     )
   );
 });
