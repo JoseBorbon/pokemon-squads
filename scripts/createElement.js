@@ -5,7 +5,8 @@ function createElement(
   pOrSpanElArg,
   imageSrc,
   altText,
-  monName = ''
+  monName = '',
+  addButton = false
 ) {
   const newDivEl = document.createElement(elType);
   const imageEl = document.createElement('img');
@@ -19,5 +20,18 @@ function createElement(
   });
 
   newDivEl.append(imageEl, pOrSpanEl);
+
+  if (addButton) {
+    const newButton = document.createElement('button');
+    newButton.textContent = 'X';
+    newButton.setAttribute('class', 'team-aside-button');
+    newButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      // console.log(event.target.parentNode);
+      event.target.parentNode.remove();
+    });
+    newDivEl.append(newButton);
+    // console.log(newButton.parentNode);
+  }
   return newDivEl;
 }
