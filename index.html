@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fetch</title>
+    <script src="scripts/state.js"></script>
     <script src="scripts/addPokemonToDropDown.js"></script>
     <script src="scripts/utilities/removeLastChildEl.js"></script>
     <script src="scripts/utilities/prependToParentEl.js"></script>
@@ -48,12 +49,12 @@
         </div>
         <div id="details-sub-text">
           <h3 id="base-attributes">Base Attributes</h3>
-          <p id="hp-stat">Hit Points: 35</p>
-          <p id="speed-stat">Speed: 10</p>
-          <p id="attack-stat">Attack: 55</p>
-          <p id="defense-stat">Defense: 40</p>
-          <p id="special-attack-stat">Special Attack: 99</p>
-          <p id="special-defense-stat">Special Defense: 90</p>
+          <p id="hp-stat" class="base-stats">Hit Points: 0</p>
+          <p id="speed-stat" class="base-stats">Speed: 0</p>
+          <p id="attack-stat" class="base-stats">Attack: 0</p>
+          <p id="defense-stat" class="base-stats">Defense: 0</p>
+          <p id="special-attack-stat" class="base-stats">Special Attack: 0</p>
+          <p id="special-defense-stat" class="base-stats">Special Defense: 0</p>
         </div>
         <div id="details-action">
           <button>Add -></button>
@@ -63,9 +64,14 @@
         <h3>Team</h3>
         <ul id="team-list"></ul>
         <h4>Team Statistics</h4>
-        <p>Health Points: 105</p>
-        <p>Attack: 130</p>
-        <p>Defense: 60</p>
+        <div id="team-stats">
+          <p id="team-hp">Health Points: 0</p>
+          <p id="team-speed">Speed: 0</p>
+          <p id="team-attack">Attack: 0</p>
+          <p id="team-defense">Defense: 0</p>
+          <p id="team-sp-attack">Sp. Attack: 0</p>
+          <p id="team-sp-defense">Sp. Defense: 0</p>
+        </div>
       </aside>
       <div id="evolutions">
         <h3>Evolutions</h3>
