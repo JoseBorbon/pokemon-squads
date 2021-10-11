@@ -7,7 +7,7 @@ class TeamState {
     this.spAttack = 0;
     this.spDefense = 0;
     this.teamsCache = {};
-    this.recentMons = [];
+    this.recentMon = null;
     this.teamMons = [];
     this.teamStatHTMLTextAttributes = [
       'Health Points',
