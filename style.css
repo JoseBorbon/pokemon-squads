@@ -121,10 +121,21 @@ header {
 
 #team {
   grid-area: team;
-  height: 518px;
+  display: grid;
+  grid-template-areas:
+    'team'
+    'teamlist'
+    'teamstatsheader'
+    'teamstats';
+  /* height: 518px; */
+}
+
+#team h3 {
+  grid-area: team;
 }
 
 ul#team-list {
+  grid-area: teamlist;
   list-style-type: none;
   padding: 0;
   height: 328px;
@@ -138,6 +149,14 @@ ul#team-list li {
 ul#team-list img {
   border-radius: 50%;
   width: 50px;
+}
+
+#team h4 {
+  grid-area: teamstatsheader;
+}
+
+#team-stats {
+  grid-area: teamstats;
 }
 
 #evolutions {
@@ -190,5 +209,5 @@ p {
 }
 
 .team-aside-button {
-  margin-left: 10px;
+  margin-left: auto;
 }
