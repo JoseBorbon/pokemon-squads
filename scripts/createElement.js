@@ -27,6 +27,10 @@ function createElement(
     newButton.setAttribute('class', 'team-aside-button');
     newButton.addEventListener('click', (event) => {
       event.preventDefault();
+      // const eventMonTarget = event.target.parentNode
+      const eventMonName =
+        event.target.parentNode.querySelector('span').textContent;
+      currState.removeMonFromCache(eventMonName);
       // console.log(event.target.parentNode);
       event.target.parentNode.remove();
     });
