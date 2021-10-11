@@ -5,14 +5,27 @@ const goButton = document.querySelector('#pokemon-selector input[value="Go"]');
 const addButton = document.querySelector('button');
 
 addButton.addEventListener('click', () => {
-  const teamList = document.querySelector('#team-list');
   const detailsPokemonName = document
     .querySelector('#details-name')
     .textContent.match(/Name:(.*)/)[1]
     .trim();
+
+  //guard clause to prevent repeat adds to team
+  if (currState.teamMons.includes(detailsPokemonName)) {
+    return;
+  }
+  const teamList = document.querySelector('#team-list');
   const detailsImgContainerImg = document.querySelector(
     '#details-img-container img'
   );
+
+  const detailsPokemonStats = document.querySelectorAll('.base-stats');
+  const monStats = [];
+
+  detailsPokemonStats.forEach((node, index) => {
+    monStats[index] = Number(node.textContent.match(/[0-9]+/gi)[0]);
+  });
+
   //Used to prevent additional mons from being added to team if size is 6 already
   if (childrenLengthIsEqualTo6(teamList.children.length)) {
     return;
@@ -29,6 +42,8 @@ addButton.addEventListener('click', () => {
       true //true for wantsEventListener, otherwise default will be false
     )
   );
+
+  currState.addMonToCache(detailsPokemonName, monStats);
 });
 
 goButton.addEventListener('click', (event) => {
@@ -42,7 +57,6 @@ goButton.addEventListener('click', (event) => {
       `https://pokeapi.co/api/v2/pokemon/${selectedValue}`
     );
     response = await response.json();
-    // console.log(response);
     //destructuring response -- Will create function for this later//
     const {
       name,
@@ -140,11 +154,10 @@ goButton.addEventListener('click', (event) => {
           properName
         )
       );
-
-    // console.log(monDetails);
-    // console.log(types); //will need to iterate through types
   })(selectedVal);
 });
-// figure out what we're going to fetch and read documentation to figure out more about the restful API
 
+//Used to add all fetched pokemon to dropdown menu
 addPokemonToDropDown();
+//object used to keep track of current state
+const currState = new TeamState();
